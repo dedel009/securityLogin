@@ -20,4 +20,21 @@ spring:
     username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
     password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      show-sql: true
+      hibernate:
+        hbm2ddl:
+          auto: create-drop
+
+logging:
+  file:
+    path: D:/logs
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: debug
+
+
+
+

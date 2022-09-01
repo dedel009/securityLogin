@@ -1,13 +1,25 @@
 package com.exam.controller;
 
+import com.exam.domain.User;
+import com.exam.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
 
+    private final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/")
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("users", userRepository.findAll());
         return "index";
     }
 }
