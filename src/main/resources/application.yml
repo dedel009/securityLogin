@@ -21,11 +21,16 @@ spring:
     password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true #hibernate 스키마 생성이 수행된 후 데이터베이스를 채움
     properties:
       show-sql: true
       hibernate:
         hbm2ddl:
           auto: create-drop
+  sql:
+    init:
+      mode: always  #항상 스크립트를 사용하여 데이터베이스를 초기화할건지 여부
+      data-locations: classpath:sql/*.sql
 
 logging:
   file:
@@ -33,7 +38,7 @@ logging:
     max-size: 500MB
     max-history: 10
   level:
-    root: debug
+    root: info
 
 
 

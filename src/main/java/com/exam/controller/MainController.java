@@ -22,4 +22,9 @@ public class MainController {
         model.addAttribute("users", userRepository.findAll());
         return "index";
     }
+
+    @GetMapping("/qazx")
+    public String login(){
+        return "login";
+    }
 }

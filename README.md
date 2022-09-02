@@ -8,3 +8,4 @@
 ### - Spring Security
 ### - JSP(or react or thymeleaf) 추후 변경
 ### - logback
+### - profiles : 미정
