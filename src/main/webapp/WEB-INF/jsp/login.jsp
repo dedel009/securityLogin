@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>관리자 로그인</h1>
-    <form action="${context}/qazx" method="post">
+    <form action="/qazx" method="post">
         <span>id : </span><input type="text" name="adminId"/>
         <span>password : </span><input type="text" name="password"/>
-        <button type="submit">로그인</button>
+        <input type="submit" value="로그인" />
     </form>
 </body>
 </html>

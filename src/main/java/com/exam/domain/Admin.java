@@ -19,6 +19,4 @@ public class Admin {
     private String name;
 
     private String phone;
-
-    private String auth;
 }

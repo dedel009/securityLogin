@@ -22,9 +22,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/qazx").permitAll()
-                .anyRequest().authenticated();
+//                .antMatchers("/h2-console/**").permitAll()
+//                .antMatchers("/qazx").permitAll()
+                .anyRequest().permitAll();
         http.formLogin()
                 .loginPage("/qazx")
                 .failureUrl("/qazx?error=true")
