@@ -25,6 +25,7 @@ public class MainController {
 
     @GetMapping("/qazx")
     public String login(){
+        logger.info("로그인화면");
         return "login";
     }
 }

@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>관리자 로그인</h1>
-    <form action="/qazx" method="post">
+    <form action="/loginProcess" method="post">
         <span>id : </span><input type="text" name="adminId"/>
-        <span>password : </span><input type="text" name="password"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <span>password : </span><input type="password" name="password"/>
+
         <input type="submit" value="로그인" />
     </form>
 </body>

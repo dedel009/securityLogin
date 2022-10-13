@@ -16,11 +16,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
 
     @Bean
-    public UserDetailsService AdminDetailService() {
-        return new AdminDetailService();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
@@ -32,16 +27,20 @@ public class SecurityConfiguration {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/qazx").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin()
+                .and()
+                .formLogin()
                 .loginPage("/qazx")
+                .loginProcessingUrl("/loginProcess")
+                .usernameParameter("adminId")
+                .passwordParameter("password")
                 .failureUrl("/qazx?error=true")
-                .loginProcessingUrl("/qazx")
                 .defaultSuccessUrl("/")
                 .and()
                 .logout().permitAll()
                 .logoutUrl("/qazx/logout")
                 .logoutSuccessUrl("/qazx");
-//        http.csrf().disable();
+
+        http.csrf().disable();
         return http.build();
     }
 
