@@ -9,7 +9,7 @@
 <body>
     <h1>관리자 로그인</h1>
     <form action="/loginProcess" method="post">
-        <span>id : </span><input type="text" name="adminId"/>
+        <span>id : </span><input type="text" name="username"/>
         <span>password : </span><input type="password" name="password"/>
 
         <input type="submit" value="로그인" />

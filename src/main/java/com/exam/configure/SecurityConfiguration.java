@@ -31,8 +31,6 @@ public class SecurityConfiguration {
                 .formLogin()
                 .loginPage("/qazx")
                 .loginProcessingUrl("/loginProcess")
-                .usernameParameter("adminId")
-                .passwordParameter("password")
                 .failureUrl("/qazx?error=true")
                 .defaultSuccessUrl("/")
                 .and()

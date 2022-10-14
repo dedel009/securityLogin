@@ -37,14 +37,14 @@ public class AdminDetailService implements UserDetailsService {
         if(admin == null){
             throw new UsernameNotFoundException("해당 관리자가 없습니다.");
         }
-        String password = passwordEncoder.encode(admin.getPassword());
-        logger.info("password ==="+password);
-        if(passwordEncoder.matches(admin.getPassword(),password)){
-            logger.info("비밀번호 일치");
-        }else{
-            logger.info("비밀번호 불일치");
-        }
-        admin.setPassword(password);
+//        String password = passwordEncoder.encode(admin.getPassword());
+//        logger.info("password ==="+password);
+//        if(passwordEncoder.matches(admin.getPassword(),password)){
+//            logger.info("비밀번호 일치");
+//        }else{
+//            logger.info("비밀번호 불일치");
+//        }
+//        admin.setPassword(password);
 
         ExamAdmin examAdmin = new ExamAdmin(admin, buildAdminAuthority());
 
