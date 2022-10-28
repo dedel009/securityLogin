@@ -1,4 +1,4 @@
-package com.exam.domain;
+package com.exam.domain.admin;
 
 import lombok.Data;
 

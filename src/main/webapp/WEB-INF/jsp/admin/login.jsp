@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>관리자 로그인</h1>
-    <form action="/loginProcess" method="post">
+    <form action="/admin/loginProcess" method="post">
         <span>id : </span><input type="text" name="username"/>
         <span>password : </span><input type="password" name="password"/>
 

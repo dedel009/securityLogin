@@ -1,31 +1,30 @@
-package com.exam.controller;
+package com.exam.controller.user;
 
-import com.exam.domain.User;
 import com.exam.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@RequiredArgsConstructor
 @Controller
-public class MainController {
+public class UserMainController {
 
-    private final Logger logger = LoggerFactory.getLogger(MainController.class);
+    private final Logger logger = LoggerFactory.getLogger(UserMainController.class);
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @GetMapping("/")
     public String main(Model model){
         model.addAttribute("users", userRepository.findAll());
-        return "index";
+        return "user/index";
     }
 
-    @GetMapping("/qazx")
+    @GetMapping("/login")
     public String login(){
         logger.info("로그인화면");
-        return "login";
+        return "user/login";
     }
 }

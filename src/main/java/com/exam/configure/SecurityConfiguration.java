@@ -1,19 +1,24 @@
 package com.exam.configure;
 
 import com.exam.service.AdminDetailService;
+import com.exam.service.UserDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
+@RequiredArgsConstructor
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
+
+    private final AdminDetailService adminDetailService;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -21,22 +26,23 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain AdminfilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/qazx").permitAll()
+                .antMatchers("/admin/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/qazx")
-                .loginProcessingUrl("/loginProcess")
-                .failureUrl("/qazx?error=true")
-                .defaultSuccessUrl("/")
+                .loginPage("/admin/login")
+                .loginProcessingUrl("/admin/loginProcess")
+                .failureUrl("/admin/login?error=true")
+                .defaultSuccessUrl("/admin")
                 .and()
                 .logout().permitAll()
-                .logoutUrl("/qazx/logout")
-                .logoutSuccessUrl("/qazx");
+                .logoutUrl("/admin/logout")
+                .logoutSuccessUrl("/admin")
+                .and().userDetailsService(adminDetailService);
 
         http.csrf().disable();
         return http.build();

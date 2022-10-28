@@ -1,4 +1,4 @@
-package com.exam.domain;
+package com.exam.domain.admin;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,10 +10,12 @@ import java.util.Collection;
 @Getter
 @Setter
 public class ExamAdmin extends User {
+    String id;
     String name;
 
     public ExamAdmin(Admin admin, Collection<? extends GrantedAuthority> authorities) {
         super(admin.getId(), admin.getPassword(), authorities);
+        this.id = admin.getId();
         this.name = admin.getName();
     }
 }
