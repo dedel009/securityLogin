@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -22,7 +23,7 @@ public class UserMainController {
         return "user/index";
     }
 
-    @GetMapping("/login")
+    @RequestMapping("/login")
     public String login(){
         logger.info("로그인화면");
         return "user/login";

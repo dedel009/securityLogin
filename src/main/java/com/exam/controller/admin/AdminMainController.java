@@ -13,7 +13,7 @@ public class AdminMainController {
 
     private final Logger logger = LoggerFactory.getLogger(AdminMainController.class);
 
-    @GetMapping("/")
+    @GetMapping
     public String main(Model model){
         return "admin/index";
     }

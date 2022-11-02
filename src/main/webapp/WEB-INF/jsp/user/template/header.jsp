@@ -8,9 +8,13 @@
 </head>
 <body>
 <header>
-<div>${admin.name}${user.name}님 환영합니다.</div>
+<div>
+<c:if test="${user != null}">${user.name}님 환영합니다.</c:if>
+<c:if test="${user == null}">
+   <a href="${context}/login">사용자 로그인</a>
+</c:if>
+</div>
 <c:if test="${user != null}"><a href="${context}/logout">사용자 로그아웃</a></c:if>
-<c:if test="${admin != null}"><a href="${context}/admin/logout">관리자 로그아웃</a></c:if>
 <h1>
     ★게시판 리스트★
     <br>

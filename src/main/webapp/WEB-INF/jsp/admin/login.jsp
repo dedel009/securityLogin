@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>관리자 로그인</h1>
-    <form action="/admin/loginProcess" method="post">
-        <span>id : </span><input type="text" name="username"/>
-        <span>password : </span><input type="password" name="password"/>
+    <form action="/admin/login" method="post">
+        <span>id : </span><input type="text" name="username" required />
+        <span>password : </span><input type="password" name="password" required />
 
         <input type="submit" value="로그인" />
     </form>
