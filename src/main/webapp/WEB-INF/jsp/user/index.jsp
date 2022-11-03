@@ -11,13 +11,8 @@
 <h2>
 --------------------------------------------------------
 <br>
-메인섹션 유저 정보 출력
+메인화면입니다.
 </h2>
-<c:forEach var="user" items="${users}" varStatus="status">
-<p>id : ${user.id}</p>
-<p>name : ${user.name}</p>
-<p>phoneNumber : ${user.phone}</p>
-</c:forEach>
 <h2>
 --------------------------------------------------------
 </h2>

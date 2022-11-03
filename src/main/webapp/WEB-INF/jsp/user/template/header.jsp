@@ -16,7 +16,12 @@
 </div>
 <c:if test="${user != null}"><a href="${context}/logout">사용자 로그아웃</a></c:if>
 <h1>
-    ★게시판 리스트★
+    <a href="${context}/">
+        메인
+    </a>
+</h1>
+<h1>
+    ★게시판 메뉴★
     <br>
     <c:forEach var="boardList" items="${boardList}" varStatus="status">
     <a href="${context}/article/${boardList.id}">

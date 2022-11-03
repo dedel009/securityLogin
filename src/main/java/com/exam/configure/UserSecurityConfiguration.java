@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 @Order(2)
 public class UserSecurityConfiguration {
 
@@ -24,25 +23,28 @@ public class UserSecurityConfiguration {
     }
 
     @Bean
-    public PasswordEncoder userPasswordEncoder(){
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public DaoAuthenticationProvider userAuthenticationProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService());
-        provider.setPasswordEncoder(userPasswordEncoder());
-
-        return provider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider userAuthenticationProvider(){
+//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+//        provider.setUserDetailsService(userDetailsService());
+//        provider.setPasswordEncoder(userPasswordEncoder());
+//
+//        return provider;
+//    }
 
     @Bean
     public SecurityFilterChain userFilterChain(HttpSecurity http) throws Exception {
         http
-                .authenticationProvider(userAuthenticationProvider())
+//                .authenticationProvider(userAuthenticationProvider())
+                .antMatcher("/**")
                 .authorizeHttpRequests()
-                .antMatchers("/**")
+                .antMatchers("/")
+                .permitAll()
+                .anyRequest()
                 .hasAnyAuthority("ROLE_USER")
                 .and()
                 .formLogin()
@@ -56,11 +58,28 @@ public class UserSecurityConfiguration {
                 .logoutSuccessUrl("/")
                 .and()
                 .csrf().disable();
+
+//        http
+//                .authenticationProvider(userAuthenticationProvider())
+//                .antMatcher("/**")
+//                .authorizeHttpRequests(authorize -> authorize
+//                        .antMatchers("/article/*/*").hasAnyAuthority("ROLE_USER")
+//                        .anyRequest().permitAll())
+//                .formLogin(form -> form
+//                        .loginPage("/login")
+//                        .loginProcessingUrl("/login")
+//                        .failureUrl("/login?error=true")
+//                        .defaultSuccessUrl("/")
+//                        .permitAll())
+//                .logout(logout -> logout
+//                        .logoutUrl("/logout")
+//                        .logoutSuccessUrl("/"))
+//                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/static/**","/h2-console/**");
+        return (web) -> web.ignoring().antMatchers("/h2-console/**");
     }
 }

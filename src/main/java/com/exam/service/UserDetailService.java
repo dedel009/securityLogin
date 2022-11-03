@@ -4,6 +4,7 @@ import com.exam.domain.admin.ExamAdmin;
 import com.exam.domain.user.ExamUser;
 import com.exam.domain.user.User;
 import com.exam.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,12 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
+@RequiredArgsConstructor
 public class UserDetailService implements UserDetailsService {
 
     private final Logger logger = LoggerFactory.getLogger(UserDetailService.class);
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException{

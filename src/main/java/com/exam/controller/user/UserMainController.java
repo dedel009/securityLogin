@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping
 public class UserMainController {
 
     private final Logger logger = LoggerFactory.getLogger(UserMainController.class);
@@ -23,7 +24,7 @@ public class UserMainController {
         return "user/index";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login(){
         logger.info("로그인화면");
         return "user/login";
