@@ -1,6 +1,8 @@
 package com.exam.configure;
 
 import com.exam.service.UserDetailService;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
