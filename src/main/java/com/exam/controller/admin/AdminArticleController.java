@@ -1,4 +1,4 @@
-package com.exam.controller.user;
+package com.exam.controller.admin;
 
 import com.exam.domain.Board;
 import com.exam.repository.BoardRepository;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/article/{boardId}")
+@RequestMapping("/admin/article/{boardId}")
 @RequiredArgsConstructor
-public class ArticleController {
+public class AdminArticleController {
 
-    private final Logger logger = LoggerFactory.getLogger(ArticleController.class);
+    private final Logger logger = LoggerFactory.getLogger(AdminArticleController.class);
 
     private final ArticleService articleService;
 

@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 </head>
 <body>
+<jsp:include page="template/header.jsp"></jsp:include>
     <h1>관리자 로그인</h1>
     <form action="/admin/login" method="post">
         <span>id : </span><input type="text" name="username" required />

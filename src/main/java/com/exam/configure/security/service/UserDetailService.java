@@ -1,4 +1,4 @@
-package com.exam.service;
+package com.exam.configure.security.service;
 
 import com.exam.domain.user.ExamUser;
 import com.exam.domain.user.User;
