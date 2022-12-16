@@ -1,6 +1,8 @@
 package com.exam.configure.security;
 
 import com.exam.configure.security.service.UserDetailService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -11,10 +13,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
+@RequiredArgsConstructor
 @Order(2)
 public class UserSecurityConfiguration {
+
+    private final AuthenticationFailureHandler userFailureHandler;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -26,12 +32,15 @@ public class UserSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+//    @Bean
+//    public AuthenticationFailureHandler userFailureHandler() {return new userFailureHandler();
+//    }
+
     @Bean
     public DaoAuthenticationProvider userAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService());
         provider.setPasswordEncoder(userPasswordEncoder());
-
         return provider;
     }
 
@@ -68,6 +77,7 @@ public class UserSecurityConfiguration {
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
                         .failureUrl("/login?error=true")
+                        .failureHandler(userFailureHandler)
                         .defaultSuccessUrl("/")
                         .permitAll())
                 .logout(logout -> logout
