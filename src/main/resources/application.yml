@@ -1,0 +1,45 @@
+server:
+  servlet:
+    context-path: /
+  port: 8080
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  h2:
+    # H2 Setting Info (H2 Console에 접속하기 위한 설정정보 입력)
+    console:
+      enabled: true      # H2 Console을 사용할지 여부 (H2 Console은 H2 Database를 UI로 제공해주는 기능)
+      path: /h2-console  # H2 Console의 Path
+  # Database Setting Info (Database를 H2로 사용하기 위해 H2연결 정보 입력)
+  datasource:
+    driver-class-name: org.h2.Driver  # Database를 H2로 사용하겠다.
+    url: jdbc:h2:~/test  # H2 접속 정보
+    username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
+    password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true #hibernate 스키마 생성이 수행된 후 데이터베이스를 채움
+    properties:
+      show-sql: true
+      hibernate:
+        hbm2ddl:
+          auto: create-drop
+  sql:
+    init:
+      mode: always  #항상 스크립트를 사용하여 데이터베이스를 초기화할건지 여부
+      data-locations: classpath:sql/*.sql
+
+logging:
+  file:
+    path: D:/logs
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info
+
+
+
+
